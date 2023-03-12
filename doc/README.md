@@ -33,15 +33,16 @@ Representa un delito concreto.
 **Propiedades**:
 
 - _fecha_, de tipo _LocalDateTime_, consultable. Indica la fecha y la hora del crimen.
-- _categoria_, de tipo _String_, consultable. Indica el tipo de delito cometido.
-- _descripcion_, de tipo _List\<String\>_, consultable. Lista con ciertas especificaciones que describen mejor el crimen.
+- _categoria_, de tipo _String_, consultable y modificable. Indica el tipo de delito cometido.
+- _descripcion_, de tipo _List\<String\>_, consultable y modificable. Lista con ciertas especificaciones que describen mejor el crimen.
 - _diaSemana_, de tipo _DiaSemana_, consultable. Día de la semana en el que se cometió el crimen. Puede tomar los valores LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO y DOMINGO.
 - _distrito_, de tipo _String_, consultable. Distrito de la ciudad desconocida en el que se cometió el crimen.
-- _resolucion_, de tipo _Resolucion_, consultable. Resolución del delito. Puede tomar los valores SIN_RESOLUCION, ARRESTADO y ARRESTADO_CITADO.
+- _resolucion_, de tipo _Resolucion_, consultable y modificable. Resolución del delito. Puede tomar los valores SIN_RESOLUCION, ARRESTADO y ARRESTADO_CITADO.
 - _direccion_, de tipo _String_, consultable. Dirección en la que se cometió el delito.
 - _latitud_, de tipo _Double_, consultable. Latitud de la localización exacta del crimen.
 - _longitud_, de tipo _Double_, consultable. Longitud de la localización exacta del crimen.
-
+- _resuelto_, de tipo _Boolean_, consultable. Indica si el delito ha sido resuelto o no.
+- _prioridad_, de tipo _Double_, consultable. La prioridad representa la importancia del delito. Es un número menor que 1 y cuanto menor sea dicho número más importante será el delito.
 
 **Constructores**: 
 
@@ -55,7 +56,7 @@ Representa un delito concreto.
 - R3: La resolución no puede ser null.
 ***Criterio de igualdad**: Dos crímenes son iguales si su categoría, su descripción, su fecha, su latitud, su longitud y su resolución son iguales.
 
-**Criterio de ordenación**: Por prioridad del delito y .
+**Criterio de ordenación**: Por prioridad del delito y por el nombre del distrito.
 
 #### Tipos auxiliares
 
