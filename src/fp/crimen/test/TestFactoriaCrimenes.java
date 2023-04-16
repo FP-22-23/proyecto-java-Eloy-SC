@@ -10,7 +10,7 @@ public class TestFactoriaCrimenes {
 	}
 
 	private static void testLeerCrimenes(String fichero) {
-		System.out.println("\nTestLeerPartidas =============");
+		System.out.println("\nTestLeerCrimenes =============");
 		Crimenes crimenes = FactoriaCrimenes.leeCrimenes(fichero);
 		System.out.println("Crimenes: "+ crimenes);
 	}

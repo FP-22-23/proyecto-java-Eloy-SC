@@ -29,7 +29,7 @@ public class FactoriaCrimenes {
 	private static Crimen parsearCrimen(String linea) {
 		String[] trozos = linea.split(";");
 		
-		LocalDateTime fecha = LocalDateTime.parse(trozos[0].trim(), DateTimeFormatter.ofPattern("MM/dd/YYYY HH:mm"));
+		LocalDateTime fecha = LocalDateTime.parse(trozos[0].trim(), DateTimeFormatter.ofPattern("M/dd/yyyy HH:mm"));
 		String categoria = trozos[1].trim();
 		List<String> descripcion = List.of(trozos[2].trim().split(","));
 		DiaSemana diaSemana = parseaDiaSemana(trozos[3].trim());
@@ -70,14 +70,14 @@ public class FactoriaCrimenes {
 	
 	public static Resolucion parseaResolucion(String cad) {
 		Resolucion res = null;
-		if (cad=="NONE") {
-			res = Resolucion.SIN_RESOLUCION;
-		}
-		else if (cad=="ARREST, BOOKED") {
+		if (cad=="ARREST, BOOKED") {
 			res = Resolucion.ARRESTADO;
 		}
 		else if (cad=="ARREST, CITED") {
 			res = Resolucion.ARRESTADO_CITADO;
+		}
+		else {
+			res = Resolucion.SIN_RESOLUCION;
 		}
 		return res;
 	}
