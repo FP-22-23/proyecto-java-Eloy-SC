@@ -80,6 +80,4 @@ public class CrimenesImpl implements Crimenes {
 		}
 		return res.size();
 	}
-	
-	
 }
