@@ -2,11 +2,16 @@ package fp.crimen;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CrimenesImpl implements Crimenes {
 	
@@ -20,6 +25,10 @@ public class CrimenesImpl implements Crimenes {
 	public CrimenesImpl(Collection<Crimen> crimenes) {
 		
 		this.crimenes = new ArrayList<Crimen>(crimenes);
+	}
+	
+	public CrimenesImpl(Stream<Crimen> crimenes) {
+		this.crimenes = crimenes.collect(Collectors.toList());
 	}
 
 	@Override
@@ -67,6 +76,7 @@ public class CrimenesImpl implements Crimenes {
 		for(Crimen c:crimenes) {
 			if (c.getCategoria()==cat) {
 				res = true;
+				break;
 			}
 		}
 		return res;
@@ -79,5 +89,45 @@ public class CrimenesImpl implements Crimenes {
 			res.add(c.getDistrito());
 		}
 		return res.size();
+	}
+	
+	public List<String> listaDirecciones(DiaSemana diaSemana) {
+		
+		List<String> res = new ArrayList<>();
+		for(Crimen c:crimenes) {
+			if (c.getDiaSem()==diaSemana) {
+				res.add(c.getDireccion());
+			}
+		}
+		return res;
+	}
+	
+	public Map<String, List<String>> direccionesPorDistrito() {
+		
+		Map<String, List<String>> res = new HashMap<String, List<String>>();
+		for(Crimen c:crimenes) {
+			if (res.containsKey(c.getDistrito())) {
+				res.get(c.getDistrito()).add(c.getDireccion());
+			}
+			else {
+				ArrayList<String> direcciones = new ArrayList<>();
+				direcciones.add(c.getDireccion());
+				res.put(c.getDistrito(), direcciones);
+			}
+		}
+		return res;
+	}
+	
+	public Map<String, Integer> contarDistritos() {
+		Map<String, Integer> m = new HashMap<String, Integer>();
+		for (Crimen c : crimenes) {
+			String clave = c.getDistrito();
+			if (m.containsKey(clave)) {
+				m.put(clave, m.get(clave) + 1);
+			} else {
+				m.put(clave, 1);
+			}
+		}
+		return m;
 	}
 }
