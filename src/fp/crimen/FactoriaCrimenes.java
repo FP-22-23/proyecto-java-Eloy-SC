@@ -29,7 +29,7 @@ public class FactoriaCrimenes {
 	private static Crimen parsearCrimen(String linea) {
 		String[] trozos = linea.split(";");
 		
-		LocalDateTime fecha = LocalDateTime.parse(trozos[0].trim(), DateTimeFormatter.ofPattern("M/dd/yyyy HH:mm"));
+		LocalDateTime fecha = LocalDateTime.parse(trozos[0].trim(), DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm"));
 		String categoria = trozos[1].trim();
 		List<String> descripcion = List.of(trozos[2].trim().split(","));
 		DiaSemana diaSemana = parseaDiaSemana(trozos[3].trim());

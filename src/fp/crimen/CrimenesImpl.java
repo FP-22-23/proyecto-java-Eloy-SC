@@ -51,7 +51,7 @@ public class CrimenesImpl implements Crimenes {
 	@Override
 	public String toString() {
 		String crimenesString = crimenes.stream().map(Object::toString).collect(Collectors.joining("\n"));
-		return "Partidas [numPartidas =" + getNumeroCrimenes() + " partidas=" + crimenesString + "]";
+		return "Partidas [numCrimenes =" + getNumeroCrimenes() + " crimenes=" + crimenesString + "]";
 	}
 	
 	public Integer getNumeroCrimenes() {
