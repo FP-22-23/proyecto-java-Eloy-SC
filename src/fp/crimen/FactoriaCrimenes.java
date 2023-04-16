@@ -44,7 +44,6 @@ public class FactoriaCrimenes {
 	
 	public static DiaSemana parseaDiaSemana(String cad) {
 		DiaSemana res = null;
-		cad = cad.toUpperCase();
 		if (cad.equals("Monday")) {
 			res = DiaSemana.LUNES;
 		}
