@@ -44,25 +44,26 @@ public class FactoriaCrimenes {
 	
 	public static DiaSemana parseaDiaSemana(String cad) {
 		DiaSemana res = null;
-		if (cad=="Monday") {
+		cad = cad.toUpperCase();
+		if (cad.equals("Monday")) {
 			res = DiaSemana.LUNES;
 		}
-		else if (cad=="Tuesday") {
+		else if (cad.equals("Tuesday")) {
 			res = DiaSemana.MARTES;
 		}
-		else if (cad=="Wednesday") {
+		else if (cad.equals("Wednesday")) {
 			res = DiaSemana.MIERCOLES;
 		}
-		else if (cad=="Thursday") {
+		else if (cad.equals("Thursday")) {
 			res = DiaSemana.JUEVES;
 		}
-		else if (cad=="Friday") {
+		else if (cad.equals("Friday")) {
 			res = DiaSemana.VIERNES;
 		}
-		else if (cad=="Saturday") {
+		else if (cad.equals("Saturday")) {
 			res = DiaSemana.SABADO;
 		}
-		else if (cad=="Sunday") {
+		else if (cad.equals("Sunday")) {
 			res = DiaSemana.DOMINGO;
 		}
 		return res;
@@ -70,10 +71,11 @@ public class FactoriaCrimenes {
 	
 	public static Resolucion parseaResolucion(String cad) {
 		Resolucion res = null;
-		if (cad=="ARREST, BOOKED") {
+		cad = cad.toUpperCase();
+		if (cad.equals("ARREST, BOOKED")) {
 			res = Resolucion.ARRESTADO;
 		}
-		else if (cad=="ARREST, CITED") {
+		else if (cad.equals("ARREST, CITED")) {
 			res = Resolucion.ARRESTADO_CITADO;
 		}
 		else {
