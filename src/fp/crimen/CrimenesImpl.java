@@ -64,6 +64,7 @@ public class CrimenesImpl implements Crimenes {
 		this.crimenes.addAll(crimenes);
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	public void eliminarCrimen(Integer index) {
 		crimenes.remove(index);
 	}
