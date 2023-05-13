@@ -14,8 +14,7 @@ public class Crimen implements Comparable<Crimen> {
 	private String distrito;
 	private Resolucion resolucion;
 	private String direccion;
-	private Double latitud;
-	private Double longitud;
+	private Coordenadas coordenadas;
 	
 	/**
 	 * @param fecha Indica la fecha y la hora del crimen. 
@@ -44,8 +43,7 @@ public class Crimen implements Comparable<Crimen> {
 		Checkers.check("Error en la resolucion", resolucion!=null);
 		this.resolucion = resolucion;
 		this.direccion = direccion;
-		this.latitud = latitud;
-		this.longitud = longitud;
+		this.coordenadas = new Coordenadas(latitud, longitud);
 	}
 	
 	/**
@@ -68,8 +66,7 @@ public class Crimen implements Comparable<Crimen> {
 		Checkers.check("Error en la resolucion", resolucion!=null);
 		this.resolucion = resolucion;
 		this.direccion = null;
-		this.latitud = null;
-		this.longitud = null;
+		this.coordenadas = null;
 	}
 	
 	public LocalDateTime getFecha() {
@@ -93,11 +90,8 @@ public class Crimen implements Comparable<Crimen> {
 	public String getDireccion() {
 		return direccion;
 	}
-	public Double getLat() {
-		return latitud;
-	}
-	public Double getLon() {
-		return longitud;
+	public Coordenadas getCoordenadas() {
+		return coordenadas;
 	}
 	public Boolean getResuelto() {
 		Boolean res = true;
@@ -132,14 +126,14 @@ public class Crimen implements Comparable<Crimen> {
 	public String toString() {
 		return "Crimen: fecha=" + getFecha() + ", categoria=" + getCategoria() + ", descripcion="
 				+ getDesc() + ", diaSemana=" + getDiaSem() + ", distrito=" + getDistrito() +
-				", resolucion=" + getResolucion() + ", direccion=" + getDireccion() + ", latitud="
-				+ getLat() + ", longitud=" + getLon() + ", resuelto=" + getResuelto() + ", prioridad="
+				", resolucion=" + getResolucion() + ", direccion=" + getDireccion() + ", coordenadas="
+				+ getCoordenadas() + ", resuelto=" + getResuelto() + ", prioridad="
 				+ getPrioridad();
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(categoria, descripcion, fecha, latitud, longitud, resolucion);
+		return Objects.hash(categoria, descripcion, fecha, resolucion);
 	}
 
 	@Override
@@ -152,8 +146,7 @@ public class Crimen implements Comparable<Crimen> {
 			return false;
 		Crimen other = (Crimen) obj;
 		return Objects.equals(categoria, other.categoria) && Objects.equals(descripcion, other.descripcion)
-				&& Objects.equals(fecha, other.fecha) && Objects.equals(latitud, other.latitud)
-				&& Objects.equals(longitud, other.longitud) && Objects.equals(resolucion, other.resolucion);
+				&& Objects.equals(fecha, other.fecha) && Objects.equals(resolucion, other.resolucion);
 	}
 	
 	/**

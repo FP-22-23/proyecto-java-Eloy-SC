@@ -26,8 +26,7 @@ public class TestCrimen {
 		System.out.println(c2.getDistrito());
 		System.out.println(c2.getResolucion());
 		System.out.println(c2.getDireccion());
-		System.out.println(c2.getLat());
-		System.out.println(c2.getLon());
+		System.out.println(c2.getCoordenadas());
 		System.out.println(c2.getResuelto());
 		System.out.println(c2.getPrioridad());
 	}
