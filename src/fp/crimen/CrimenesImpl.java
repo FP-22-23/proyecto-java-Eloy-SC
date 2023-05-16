@@ -2,6 +2,7 @@ package fp.crimen;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -128,5 +129,43 @@ public class CrimenesImpl implements Crimenes {
 			}
 		}
 		return m;
+	}
+	
+	public Boolean existeCategoriaStream(String cat) {
+		
+		Boolean res = false;
+		Long contador = crimenes.stream()
+						   .filter(x->x.getCategoria().equals(cat))
+						   .count();
+		if(contador>0) {
+			res = true;
+		}
+		return res;
+	}
+	
+	public Integer sumaDistritosStream() {
+		
+		Long res = crimenes.stream()
+					   .map(x -> x.getDistrito())
+					   .distinct()
+					   .count();
+		return res.intValue();
+	}
+	
+	public List<String> listaDireccionesStream(DiaSemana diaSemana) {
+		
+		return crimenes.stream()
+					   .filter(x -> x.getDiaSem().equals(diaSemana))
+					   .map(x -> x.getDireccion())
+					   .toList();
+	}
+	
+	public String direccionMayorPrioridadEnDistrito(String distrito) {
+		
+		return crimenes.stream()
+					  .filter(x -> x.getDistrito().equals(distrito))
+					  .max(Comparator.comparing(Crimen::getPrioridad))
+					  .map(Crimen::getDireccion)
+					  .orElse(null);
 	}
 }

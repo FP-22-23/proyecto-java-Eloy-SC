@@ -30,6 +30,10 @@ public class TestCrimenes {
 		System.out.println(crimenes.listaDirecciones(DiaSemana.MIERCOLES));
 		System.out.println(crimenes.contarDistritos());
 		System.out.println(crimenes.direccionesPorDistrito());
+		System.out.println(crimenes.existeCategoriaStream("ASSAULT"));
+		System.out.println(crimenes.sumaDistritosStream());
+		System.out.println(crimenes.listaDireccionesStream(DiaSemana.MIERCOLES));
+		System.out.println(crimenes.direccionMayorPrioridadEnDistrito("INGLESIDE"));
 	}
 
 }

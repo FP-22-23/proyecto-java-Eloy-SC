@@ -23,4 +23,12 @@ public interface Crimenes {
 	Map<String, List<String>> direccionesPorDistrito();
 	
 	Map<String, Integer> contarDistritos();
+	
+	Boolean existeCategoriaStream(String cat);
+	
+	Integer sumaDistritosStream();
+	
+	List<String> listaDireccionesStream(DiaSemana diaSemana);
+	
+	String direccionMayorPrioridadEnDistrito(String distrito);
 }
