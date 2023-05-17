@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -133,14 +134,8 @@ public class CrimenesImpl implements Crimenes {
 	
 	public Boolean existeCategoriaStream(String cat) {
 		
-		Boolean res = false;
-		Long contador = crimenes.stream()
-						   .filter(x->x.getCategoria().equals(cat))
-						   .count();
-		if(contador>0) {
-			res = true;
-		}
-		return res;
+		return crimenes.stream()
+					   .anyMatch(x->x.getCategoria().equals(cat));
 	}
 	
 	public Integer sumaDistritosStream() {
@@ -160,12 +155,36 @@ public class CrimenesImpl implements Crimenes {
 					   .toList();
 	}
 	
-	public String direccionMayorPrioridadEnDistrito(String distrito) {
+	public Crimen crimenMayorPrioridadEnDistrito(String distrito) {
 		
 		return crimenes.stream()
 					  .filter(x -> x.getDistrito().equals(distrito))
 					  .max(Comparator.comparing(Crimen::getPrioridad))
-					  .map(Crimen::getDireccion)
 					  .orElse(null);
+	}
+	
+	public List<Crimen> crimenesPrioridadMayorOrdenadosPorDistrito(Integer prioridad) {
+		
+		return crimenes.stream()
+					   .filter(x -> x.getPrioridad()>prioridad)
+					   .sorted(Comparator.comparing(Crimen::getDistrito))
+					   .toList();
+	}
+	
+	public Map<String, Long> contarDistritosStream() {
+		
+		return crimenes.stream()
+					   .collect(Collectors.groupingBy(Crimen::getDistrito, Collectors.counting()));
+	}
+	
+	
+	
+	public Map<Resolucion, Crimen> crimenesDeMayorPrioridadPorResoluciones() {
+		
+		return crimenes.stream()
+					   .collect(Collectors.toMap(
+							   			  Crimen::getResolucion,
+							   			  x->x, 
+							   			  BinaryOperator.maxBy(Comparator.comparing(Crimen::getPrioridad))));
 	}
 }

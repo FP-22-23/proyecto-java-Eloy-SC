@@ -30,5 +30,11 @@ public interface Crimenes {
 	
 	List<String> listaDireccionesStream(DiaSemana diaSemana);
 	
-	String direccionMayorPrioridadEnDistrito(String distrito);
+	Crimen crimenMayorPrioridadEnDistrito(String distrito);
+	
+	List<Crimen> crimenesPrioridadMayorOrdenadosPorDistrito(Integer prioridad);
+	
+	Map<String, Long> contarDistritosStream();
+	
+	Map<Resolucion, Crimen> crimenesDeMayorPrioridadPorResoluciones();
 }
