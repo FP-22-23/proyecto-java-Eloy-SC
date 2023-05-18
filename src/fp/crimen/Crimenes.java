@@ -43,5 +43,5 @@ public interface Crimenes {
 	
 	SortedMap<DiaSemana, List<Crimen>> nCrimenesOrdenadosPorDiaDeSemana(Integer n);
 	
-	String categoriaConMayorPrioridad();
+	String categoriaMasRepetida();
 }

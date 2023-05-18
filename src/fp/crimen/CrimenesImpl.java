@@ -2,6 +2,7 @@ package fp.crimen;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -225,13 +226,11 @@ public class CrimenesImpl implements Crimenes {
 						    .collect(Collectors.toList());
 	}
 	
-	public String categoriaConMayorPrioridad() {
+	public String categoriaMasRepetida() {
 		
-		Map<String, Integer> m = crimenes.stream()
-					   					 .collect(Collectors.toMap(Crimen::getCategoria, Crimen::getPrioridad));
+		Map<String, Long> m = crimenes.stream()
+					   					 .collect(Collectors.groupingBy(Crimen::getCategoria, Collectors.counting()));
 		
-		return m.entrySet().stream()
-						   .max(Comparator.comparing(x->x.hashCode()).reversed())
-						   .toString();
+		return Collections.max(m.entrySet(), Map.Entry.comparingByValue()).toString();
 	}
 }

@@ -39,7 +39,7 @@ public class TestCrimenes {
 		System.out.println(crimenes.contarCrimenesSinResolverPorCategoria());
 		System.out.println(crimenes.crimenesDeMayorPrioridadPorResoluciones());
 		System.out.println(crimenes.nCrimenesOrdenadosPorDiaDeSemana(3));
-		System.out.println(crimenes.categoriaConMayorPrioridad());
+		System.out.println(crimenes.categoriaMasRepetida());
 	}
 
 }
