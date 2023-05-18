@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -132,6 +134,12 @@ public class CrimenesImpl implements Crimenes {
 		return m;
 	}
 	
+	
+	
+//	ENTREGA 3
+	
+//	BLOQUE I:
+	
 	public Boolean existeCategoriaStream(String cat) {
 		
 		return crimenes.stream()
@@ -171,13 +179,21 @@ public class CrimenesImpl implements Crimenes {
 					   .toList();
 	}
 	
+//	BLOQUE II:
+	
 	public Map<String, Long> contarDistritosStream() {
 		
 		return crimenes.stream()
 					   .collect(Collectors.groupingBy(Crimen::getDistrito, Collectors.counting()));
 	}
 	
-	
+	public Map<String, Integer> contarCrimenesSinResolverPorCategoria() {
+		
+		return crimenes.stream()
+					   .filter(x->x.getResuelto()==false)
+					   .collect(Collectors.groupingBy(Crimen::getCategoria, 
+							   Collectors.collectingAndThen(Collectors.counting(), Long::intValue)));
+	}
 	
 	public Map<Resolucion, Crimen> crimenesDeMayorPrioridadPorResoluciones() {
 		
@@ -186,5 +202,36 @@ public class CrimenesImpl implements Crimenes {
 							   			  Crimen::getResolucion,
 							   			  x->x, 
 							   			  BinaryOperator.maxBy(Comparator.comparing(Crimen::getPrioridad))));
+	}
+	
+	public SortedMap<DiaSemana, List<Crimen>> nCrimenesOrdenadosPorDiaDeSemana(Integer n) {
+		
+		Map<DiaSemana, List<Crimen>> maux = crimenes.stream()
+											 	   	.collect(Collectors.groupingBy(
+													 Crimen::getDiaSem,
+													 Collectors.collectingAndThen(
+															 Collectors.toList(),
+													 		 lista->nCrimenesOrdenados(lista,n))
+													 ));
+		SortedMap<DiaSemana, List<Crimen>> res = new TreeMap<>();
+		res.putAll(maux);
+		return res;
+	}
+	
+	private List<Crimen> nCrimenesOrdenados(List<Crimen> listaCrimenes, Integer n) {
+		return listaCrimenes.stream()
+						    .sorted()
+						    .limit(n)
+						    .collect(Collectors.toList());
+	}
+	
+	public String categoriaConMayorPrioridad() {
+		
+		Map<String, Integer> m = crimenes.stream()
+					   					 .collect(Collectors.toMap(Crimen::getCategoria, Crimen::getPrioridad));
+		
+		return m.entrySet().stream()
+						   .max(Comparator.comparing(x->x.hashCode()).reversed())
+						   .toString();
 	}
 }

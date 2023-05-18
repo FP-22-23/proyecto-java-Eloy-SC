@@ -36,8 +36,10 @@ public class TestCrimenes {
 		System.out.println(crimenes.crimenMayorPrioridadEnDistrito("INGLESIDE"));
 		System.out.println(crimenes.crimenesPrioridadMayorOrdenadosPorDistrito(50));
 		System.out.println(crimenes.contarDistritosStream());
-		
+		System.out.println(crimenes.contarCrimenesSinResolverPorCategoria());
 		System.out.println(crimenes.crimenesDeMayorPrioridadPorResoluciones());
+		System.out.println(crimenes.nCrimenesOrdenadosPorDiaDeSemana(3));
+		System.out.println(crimenes.categoriaConMayorPrioridad());
 	}
 
 }

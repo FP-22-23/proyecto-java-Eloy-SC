@@ -3,6 +3,7 @@ package fp.crimen;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.SortedMap;
 
 public interface Crimenes {
 	
@@ -36,5 +37,11 @@ public interface Crimenes {
 	
 	Map<String, Long> contarDistritosStream();
 	
+	Map<String, Integer> contarCrimenesSinResolverPorCategoria();
+	
 	Map<Resolucion, Crimen> crimenesDeMayorPrioridadPorResoluciones();
+	
+	SortedMap<DiaSemana, List<Crimen>> nCrimenesOrdenadosPorDiaDeSemana(Integer n);
+	
+	String categoriaConMayorPrioridad();
 }
